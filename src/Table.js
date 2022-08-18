@@ -2,10 +2,58 @@ import { useState } from "react";
 import "./Table.css";
 
 function Table() {
+  function Cell(props) {
+    return <td onClick={() => clickBox(props.num)}>{cellValue[props.num]}</td>;
+  }
 
-  const [turn, ChangeTurn] = useState("x");
-  const [cellValue, SetCells] = useState(Array(9).fill(""));
-  const [winner, SetWinner] = useState();
+  function clickBox(num) {
+    if (turn === "x" && cellValue[num] === "") {
+      cellValue[num] = "x";
+      setTurn("o");
+    } else if (turn === "o" && cellValue[num] === "") {
+      cellValue[num] = "o";
+      setTurn("x");
+    }
+    checkWinner();
+  }
+  function checkWinner() {
+    let allWiningCombs = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [6, 4, 2],
+    ];
+
+    allWiningCombs.forEach((winingComb) => {
+      if (
+        cellValue[winingComb[0]] === "x" &&
+        cellValue[winingComb[1]] === "x" &&
+        cellValue[winingComb[2]] === "x"
+      ) {
+        setWinner("x");
+      } else if ( 
+        cellValue[winingComb[0]] === "o" &&
+        cellValue[winingComb[1]] === "o" &&
+        cellValue[winingComb[2]] === "o"
+        ) {
+        setWinner("o");
+      }
+    });
+  }
+
+  
+  function restartGame(){
+    setWinner(null);
+    setCells(Array(9).fill(""))
+  }
+
+  const [turn, setTurn] = useState("x");
+  const [cellValue, setCells] = useState(Array(9).fill(""));
+  const [winner, setWinner] = useState();
 
   return (
     <div>
@@ -32,66 +80,14 @@ function Table() {
 
       {winner && (
         <>
-        <div>{winner} is the winner</div>
-        <div><button onClick={() => RestartGame()}>Play Again</button></div>
+          <div>{winner} is the winner</div>
+          <div><button onClick={() => restartGame()}>Play Again</button></div>
         </>
       )}
     </div>
 
   );
 
-
-  function Cell({ num }) {
-    return <td onClick={() => ClickBox({ num })}>{cellValue[num]}</td>;
-  }
-
-
-  function CheckWinner() {
-    let allWiningCombs = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [6, 4, 2],
-    ];
-
-    allWiningCombs.forEach((winingComb) => {
-      if (
-        cellValue[winingComb[0]] === "x" &&
-        cellValue[winingComb[1]] === "x" &&
-        cellValue[winingComb[2]] === "x"
-      ) {
-        SetWinner("x");
-      } else if ( 
-        cellValue[winingComb[0]] === "o" &&
-        cellValue[winingComb[1]] === "o" &&
-        cellValue[winingComb[2]] === "o"
-        ) {
-        SetWinner("o");
-      }
-    });
-  }
-
-
-  function ClickBox({ num }) {
-    if (turn === "x" && cellValue[num] === "") {
-      cellValue[num] = "x";
-      ChangeTurn("o");
-    } else if (turn === "o" && cellValue[num] === "") {
-      cellValue[num] = "o";
-      ChangeTurn("x");
-    }
-    CheckWinner();
-  }
-
-  
-  function RestartGame(){
-    SetWinner(null);
-    SetCells(Array(9).fill(""))
-  }
 }
 
 export default Table;
