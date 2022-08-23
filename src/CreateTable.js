@@ -1,17 +1,17 @@
 // import "./Table.css"
 
 
-// export default function CreateTable()
+// function createTable()
 // {
 // let rn = window.prompt("Input number of rows", 1);
-// let cn = window.prompt("Input number of columns",1);
   
-//  for(var r=0;r<parseInt(rn,10);r++)
+//  for(var r=0;r<rn;r++)
 //   {
-//    var x=document.gertElementById('root').insertRow(r);
-//    for(var c=0;c<parseInt(cn,10);c++)  
+//    var x=document.getElementById('myTable').insertRow(r);
+//    for(var c=0;c<rn;c++)  
 //     {
-//      x.insertCell(c);
+//      var y=  x.insertCell(c);
+//      y.innerHTML="A"; 
 //     }
 //    }
 // }

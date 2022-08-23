@@ -9,8 +9,8 @@ function Choose(){
 
   function createTable()
         {
-       let  rn = window.prompt("Input number of rows", 1);
-       let  cn = window.prompt("Input number of columns",1);
+       let  rn = +prompt("Input number of rows");
+       let  cn = +prompt("Input number of columns");
           
         for(var r=0;r<parseInt(rn,10);r++)
           {
@@ -111,23 +111,7 @@ function Choose(){
       return (
         <div>
           <table>
-            <tbody>
-              <tr>
-                <Cell num={0} />
-                <Cell num={1} />
-                <Cell num={2} />
-              </tr>
-              <tr>
-                <Cell num={3} />
-                <Cell num={4} />
-                <Cell num={5} />
-              </tr>
-              <tr>
-                <Cell num={6} />
-                <Cell num={7} />
-                <Cell num={8} />
-              </tr>
-            </tbody>
+            
           </table>
     
           {winner && (
