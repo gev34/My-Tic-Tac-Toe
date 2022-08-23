@@ -6,31 +6,14 @@ import PlayWithO from "./PlayWithO";
 function Choose(){
   const [isShown, setIsShown] = useState("");
 
-
-  function createTable()
-        {
-       let  rn = +prompt("Input number of rows");
-       let  cn = +prompt("Input number of columns");
-          
-        for(var r=0;r<parseInt(rn,10);r++)
-          {
-          var x=document.getElementById('myTable').insertRow(r);
-          for(var c=0;c<parseInt(cn,10);c++)  
-            {
-            var y=  x.insertCell(c);
-            y.innerHTML="Row-"+r+" Column-"+c; 
-            }
-          }
-        }
   return (
     <>
     <div>
-    <input type="button" onClick = {() => createTable()} value="Create the table" /> 
-      {/* <button onClick={(e)=>{
+       <button onClick={(e)=>{
        e.target.style.display = "none";
         setIsShown("x");
        }}>X</button>
-       {isShown === "x" && <PlayWithX/>} */}
+       {isShown === "x" && <PlayWithX/>}
       </div>
       </>
   )
@@ -111,7 +94,21 @@ function Choose(){
       return (
         <div>
           <table>
-            
+            <tr>
+              <Cell num = {0}/>
+              <Cell num = {1}/>
+              <Cell num = {2}/>
+            </tr>
+            <tr>
+              <Cell num = {3}/>
+              <Cell num = {4}/>
+              <Cell num = {5}/>
+            </tr>
+            <tr>
+              <Cell num = {6}/>
+              <Cell num = {7}/>
+              <Cell num = {8}/>
+            </tr>
           </table>
     
           {winner && (
