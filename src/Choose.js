@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Table.css"
 import PlayWithO from "./PlayWithO";
+import { MainPage } from "./CreateTable";
 
 
 function Choose(){
@@ -24,11 +25,7 @@ function Choose(){
       const [turn, setTurn] = useState("x");
       const [cellValue, setCells] = useState(Array(9).fill(""));
       const [winner, setWinner] = useState();
-    
-      function Cell(props) {
-        return <td onClick={() => clickBox(props.num)}>{cellValue[props.num]}</td>;
-      }
-    
+     
       function clickBox(num) {
         if (turn === "x" && cellValue[num] === "" && winner !== "o") {
           cellValue[num] = "x";
@@ -93,23 +90,7 @@ function Choose(){
       }
       return (
         <div>
-          <table>
-            <tr>
-              <Cell num = {0}/>
-              <Cell num = {1}/>
-              <Cell num = {2}/>
-            </tr>
-            <tr>
-              <Cell num = {3}/>
-              <Cell num = {4}/>
-              <Cell num = {5}/>
-            </tr>
-            <tr>
-              <Cell num = {6}/>
-              <Cell num = {7}/>
-              <Cell num = {8}/>
-            </tr>
-          </table>
+        <MainPage/>
     
           {winner && (
             <>
