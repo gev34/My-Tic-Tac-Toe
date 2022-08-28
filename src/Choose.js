@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Table.css"
 import PlayWithO from "./PlayWithO";
-import { MainPage } from "./CreateTable";
+import { MainPage } from "./MainPage";
 
 
 function Choose(){
@@ -25,6 +25,50 @@ function Choose(){
       const [turn, setTurn] = useState("x");
       const [cellValue, setCells] = useState(Array(9).fill(""));
       const [winner, setWinner] = useState();
+      function MainPage(){
+        const [value , setValue] = useState();
+        const [value2 , setValue2] = useState(false);
+      
+      
+        return (
+          <div>
+          <form onSubmit={(e) =>{
+            e.preventDefault();
+            setValue2(true)
+          }}>
+            <input type = "text"  onChange={(e)=> {
+             setValue(e.target.value);
+            }} />
+            <button>Create Table</button>
+            </form>
+            {(value2 && <CreateTable value = {value}/>)} 
+            </div>
+              )
+            
+      }
+      function CreateTable({value}){
+        let arrOfValues = Array(+(value)).fill("");
+        let num = 0;
+     
+        return (
+                <table>
+                    {arrOfValues.map(() => {
+        
+                        return (
+                            <tr>
+                                {arrOfValues.map(() => {
+                                    return (
+                                        <>
+                                        <td num ={num++}></td>
+                                        </>
+                                    )
+                                })}
+                            </tr>
+                        )
+                    })}
+                </table>
+            )
+      }
      
       function clickBox(num) {
         if (turn === "x" && cellValue[num] === "" && winner !== "o") {
@@ -90,7 +134,7 @@ function Choose(){
       }
       return (
         <div>
-        <MainPage/>
+        <MainPage />
     
           {winner && (
             <>
@@ -110,6 +154,7 @@ function Choose(){
           )}
         </div>
       );
+      
     }
 
 
