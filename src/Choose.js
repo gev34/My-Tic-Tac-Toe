@@ -22,80 +22,66 @@ function Choose(){
 
     function PlayWithX() {
 
-      const [turn, setTurn] = useState("x");
-      const [cellValue, setCells] = useState(Array(9).fill(""));
-      const [winner, setWinner] = useState();
+      // const [turn, setTurn] = useState("x");
+      // const [cellValue, setCells] = useState();
+      // const [winner, setWinner] = useState();
 
 
-   
-      function clickBox({num}) {
-        console.log(num)
-        if (turn === "x" && cellValue[num] === "" && winner !== "o") {
-          cellValue[num] = "x";
-          checkWinner();
-          //console.log(winner === "x");
-          setTurn("o");
-          random();    
-        }
+
+      // function clickBox(num) {
+      //   console.log(num)
+      //         // if (turn === "o" && cellValue[num] === "" && winner !== "x") {
+      //         //   cellValue[num] = "o";
+      //         //   checkWinner();
+      //         //   //console.log(winner === "x");
+      //         //   setTurn("x");
+      //         //   random();    
+      //         // }
+          
+      //       }
+
+
+
     
-      }
-      function random (){
-        if(winner !== "x"){
-         let arrayOfEmptyValues  = cellValue.reduce((aggr,value,index) => {
-            if(value.length === 0){
-             aggr.push(index);
-            }
-            return aggr;
-          },[]) 
-           let randomBoxId = arrayOfEmptyValues[Math.floor(Math.random() * arrayOfEmptyValues.length)];
-          arrayOfEmptyValues.splice(arrayOfEmptyValues.indexOf(+randomBoxId), 1);
-           cellValue[randomBoxId] = "o";
-           setCells([...cellValue]);
-           setTurn("x");
-           checkWinner();
-        }
-      }
+      // function checkWinner() {
+      //   let allWiningCombs = [
+      //     [0, 1, 2],
+      //     [3, 4, 5],
+      //     [6, 7, 8],
+      //     [0, 3, 6],
+      //     [1, 4, 7],
+      //     [2, 5, 8],
+      //     [0, 4, 8],
+      //     [6, 4, 2],
+      //   ];
     
+      //   allWiningCombs.forEach((winingComb) => {
+      //     if (
+      //       cellValue[winingComb[0]] === "x" &&
+      //       cellValue[winingComb[1]] === "x" &&
+      //       cellValue[winingComb[2]] === "x"
+      //     ) {
+      //       setWinner("x");
+      //     } else if (
+      //       cellValue[winingComb[0]] === "o" &&
+      //       cellValue[winingComb[1]] === "o" &&
+      //       cellValue[winingComb[2]] === "o"
+      //     ) {
+      //       setWinner("o");
+      //     }
+      //   });
+      // }
     
-      function checkWinner() {
-        let allWiningCombs = [
-          [0, 1, 2],
-          [3, 4, 5],
-          [6, 7, 8],
-          [0, 3, 6],
-          [1, 4, 7],
-          [2, 5, 8],
-          [0, 4, 8],
-          [6, 4, 2],
-        ];
-    
-        allWiningCombs.forEach((winingComb) => {
-          if (
-            cellValue[winingComb[0]] === "x" &&
-            cellValue[winingComb[1]] === "x" &&
-            cellValue[winingComb[2]] === "x"
-          ) {
-            setWinner("x");
-          } else if (
-            cellValue[winingComb[0]] === "o" &&
-            cellValue[winingComb[1]] === "o" &&
-            cellValue[winingComb[2]] === "o"
-          ) {
-            setWinner("o");
-          }
-        });
-      }
-    
-      function restartGame() {
-        setWinner(null);
-        setCells(Array(9).fill(""));
-        setTurn("x");
-      }
+      // function restartGame() {
+      //   setWinner(null);
+      //   setCells(Array(9).fill(""));
+      //   setTurn("x");
+      // }
       return (
         <div>
         <MainPage />
     
-          {winner && (
+          {/* {winner && (
             <>
               <div>{winner} is the winner</div>
               <div>
@@ -110,14 +96,13 @@ function Choose(){
                 <button onClick={() => restartGame()}>Play Again</button>
               </div>
             </>
-          )}
+          )} */}
         </div>
       );
 
       function MainPage(){
         const [value , setValue] = useState();
         const [value2 , setValue2] = useState(false);
-      
       
         return (
           <div>
@@ -137,27 +122,61 @@ function Choose(){
       }
       
       function CreateTable({value}){
-        let arrOfValues = Array(+(value)).fill("");
-        let num = 0;
-        const myFunc = (e) => {
-          // console.log(e.target.innerHTML)
-          if(e.target.innerHTML === ''){
-            e.target.innerHTML = 'X'
-          }  
+        let val = +value;
+      //  console.log(val)
+        const [cells , setCells] = useState(Array(val).fill( Array(val).fill("") ));
+        const [turn, setTurn] = useState("x");
+        const [winner, setWinner] = useState();
+
+
+     //   console.log(cells)
+
+        function clickBox(num){
+        //  console.log(num);
+        // console.log(cells);
+        //console.log(num.innerHTML)
+         if(turn === 'x' && winner !== 'o'){
+          // cells[num.target.id] = "x";
+          num.target.innerHTML = 'X';
+          setTurn("o");
+        } else if(turn === 'o'   && winner !== 'x'){
+       //   cells[num.target.id] = "o";
+          num.target.innerHTML = 'O';
+          setTurn("x");
         }
-  
+      
+        }
+
+
+        // allWiningCombs.forEach((winingComb) => {
+        //   if (
+        //     cellValue[winingComb[0]] === "x" &&
+        //     cellValue[winingComb[1]] === "x" &&
+        //     cellValue[winingComb[2]] === "x"
+        //   ) {
+        //     setWinner("x");
+        //   } else if (
+        //     cellValue[winingComb[0]] === "o" &&
+        //     cellValue[winingComb[1]] === "o" &&
+        //     cellValue[winingComb[2]] === "o"
+        //   ) {
+        //     setWinner("o");
+        //   }
+        // });
+      
+
+        let id = 0;
+        let arrOfValues = Array(+(value)).fill("");  
+
         return (
                 <table>
                   <tbody>
                     {arrOfValues.map(() => {
-        
                         return (
                             <tr>
-                                {arrOfValues.map((val, index) => {
+                                {arrOfValues.map(() => {
                                     return (
-                                        <td id ={index} onClick ={(e) => myFunc(e) }>
-                                          
-                                        </td>
+                                        <td id = {id++}  onClick ={(e) => clickBox(e) }></td>
                                     )
                                 })}
                             </tr>
@@ -167,11 +186,9 @@ function Choose(){
                 </table>
             )
       }
-     
-
-
       
     }
 
 
 export default Choose;
+
