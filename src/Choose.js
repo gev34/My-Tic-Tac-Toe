@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./Table.css"
-// import PlayWithO from "./PlayWithO";
-// import { MainPage } from "./MainPage";
 
 
 function Choose(){
@@ -21,12 +19,6 @@ function Choose(){
 }
 
     function PlayWithX() {
-
-      // const [turn, setTurn] = useState("x");
-      // const [cellValue, setCells] = useState();
-      // const [winner, setWinner] = useState();
-
-
 
       // function clickBox(num) {
       //   console.log(num)
@@ -123,24 +115,19 @@ function Choose(){
       
       function CreateTable({value}){
         let val = +value;
-      //  console.log(val)
         const [cells , setCells] = useState(Array(val).fill( Array(val).fill("") ));
         const [turn, setTurn] = useState("x");
         const [winner, setWinner] = useState();
 
 
-     //   console.log(cells)
+       console.log(cells)
 
         function clickBox(num){
-        //  console.log(num);
-        // console.log(cells);
-        //console.log(num.innerHTML)
-         if(turn === 'x' && winner !== 'o'){
-          // cells[num.target.id] = "x";
+    
+         if(turn === 'x' && num.target.innerHTML === '' && winner !== 'o'){
           num.target.innerHTML = 'X';
           setTurn("o");
-        } else if(turn === 'o'   && winner !== 'x'){
-       //   cells[num.target.id] = "o";
+        } else if(turn === 'o' && num.target.innerHTML === ''   && winner !== 'x'){
           num.target.innerHTML = 'O';
           setTurn("x");
         }
@@ -148,25 +135,8 @@ function Choose(){
         }
 
 
-        // allWiningCombs.forEach((winingComb) => {
-        //   if (
-        //     cellValue[winingComb[0]] === "x" &&
-        //     cellValue[winingComb[1]] === "x" &&
-        //     cellValue[winingComb[2]] === "x"
-        //   ) {
-        //     setWinner("x");
-        //   } else if (
-        //     cellValue[winingComb[0]] === "o" &&
-        //     cellValue[winingComb[1]] === "o" &&
-        //     cellValue[winingComb[2]] === "o"
-        //   ) {
-        //     setWinner("o");
-        //   }
-        // });
-      
-
         let id = 0;
-        let arrOfValues = Array(+(value)).fill("");  
+        let arrOfValues = Array(val).fill("");  
 
         return (
                 <table>
