@@ -135,28 +135,35 @@ function Choose(){
               )
             
       }
-
-
+      
       function CreateTable({value}){
         let arrOfValues = Array(+(value)).fill("");
         let num = 0;
-     
+        const myFunc = (e) => {
+          // console.log(e.target.innerHTML)
+          if(e.target.innerHTML === ''){
+            e.target.innerHTML = 'X'
+          }  
+        }
+  
         return (
                 <table>
+                  <tbody>
                     {arrOfValues.map(() => {
         
                         return (
                             <tr>
-                                {arrOfValues.map(() => {
+                                {arrOfValues.map((val, index) => {
                                     return (
-                                        <>
-                                        <td num ={num++} onClick ={() => console.log(this.num) }>{cellValue[num]}</td>
-                                        </>
+                                        <td id ={index} onClick ={(e) => myFunc(e) }>
+                                          
+                                        </td>
                                     )
                                 })}
                             </tr>
                         )
                     })}
+                    </tbody>
                 </table>
             )
       }
