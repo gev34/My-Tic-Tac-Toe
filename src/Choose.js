@@ -115,19 +115,54 @@ function Choose(){
       
       function CreateTable({value}){
         let val = +value;
-        const [cells , setCells] = useState(Array(val).fill( Array(val).fill("") ));
+        // const [cells , setCells] = useState(Array(val).fill( Array(val).fill("") ));
+        const [cells , setCells] = useState(Array(val**2).fill(""));
         const [turn, setTurn] = useState("x");
         const [winner, setWinner] = useState();
 
 
-       console.log(cells)
+
+       // console.log(cells)
+
+        let winingCombs = [];
+        let arr = Array.from(Array(val**2).keys());
+       // console.log(arr)
+        /* console.log(arr.slice(0,val))
+        console.log(arr.slice(val,val*2))
+        console.log(arr.slice(val*2,val*3))
+        console.log(arr.slice(val*3,val*val)) */
+        for(let i = 1 ; i <= val ; i++){
+          for(let j = i-1 ; j < i ; j ++){
+            winingCombs.push(arr.slice(val*j,val*i))
+          }
+        }
+        let arr2 = [];
+        for(let i = 0 ; i < arr.length ; i = i + val){
+              arr2.push(i);
+        }
+        for(let i = 1 ; i < val ; i++){
+            winingCombs.push(arr2.map((num) =>  num + i));
+        }
+         let arr3 = [];
+        for(let i = 0 ; i < arr.length ; i = i + val + 1){
+              arr3.push(i)
+        }
+        let arr4 = [];
+        for(let i = val - 1 ; i < arr.length - 1 ; i = i + val - 1){
+              arr4.push(i)
+        }
+        winingCombs.push(arr2)
+        winingCombs.push(arr3)
+        winingCombs.push(arr4)
+        console.log(winingCombs)
+
+  
 
         function clickBox(num){
-    
          if(turn === 'x' && num.target.innerHTML === '' && winner !== 'o'){
           num.target.innerHTML = 'X';
           setTurn("o");
-        } else if(turn === 'o' && num.target.innerHTML === ''   && winner !== 'x'){
+        } else if(turn === 'o' && num.target.innerHTML === '' && winner !== 'x'){
           num.target.innerHTML = 'O';
           setTurn("x");
         }
